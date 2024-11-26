@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Carros Cadastrados
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4" style="text-align: left;">
+        <h2>Welcome to the Vehicle Management System</h2>
+        <p>
+            This system allows users to manage their vehicles efficiently, keeping track of their details and maintenance history.
+            Each vehicle registered in the system will have a unique <strong>QR Code</strong> generated, making it easy to access the vehicle's history.
+        </p>
+
+        <h3>How to Use:</h3>
+        <ul>
+            <li>
+                <strong>Register a Vehicle:</strong> Click the <em>"Add Car"</em> button to add a new vehicle to your account. Provide the vehicle's license plate, model, and year.
+            </li>
+            <li>
+                <strong>View Vehicle History:</strong> For each vehicle, click the <em>"Add History"</em> button to add maintenance records or view existing ones.
+            </li>
+            <li>
+                <strong>Access QR Code:</strong> Click the <em>"QR Code"</em> button next to a vehicle to view or scan its unique QR Code. This code links directly to the vehicle's maintenance history.
+            </li>
+        </ul>
+
+        <h3>Features:</h3>
+        <ul>
+            <li>Secure login to ensure your data remains private.</li>
+            <li>Each user can only see and manage their own vehicles.</li>
+            <li>Generate and access unique QR Codes for easy sharing of vehicle history.</li>
+            <li>Simple and user-friendly interface.</li>
+        </ul>
+
+        <h3>Get Started:</h3>
+        <p>
+            Use the navigation bar to explore the system. Start by registering a vehicle or viewing your existing cars. Enjoy a seamless experience in managing your vehicle data!
+        </p>
+    </div>
+    <h2>Carros Cadastrados</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Actions</th>
+                <th>QR Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.license_plate }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.year }}</td>
+                <td><a href="/history/{{ car.id }}" class="btn btn-secondary">Add History</a></td>
+                <td><a href="/qrcode/{{ car.id }}" class="btn btn-info">QR Code</a></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No car registered yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

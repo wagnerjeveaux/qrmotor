@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    QR Code
+{% endblock %}
+
+{% block main %}
+    <h2>QR Code for Car</h2>
+    <p>Scan the QR Code below to view the maintenance history of this car:</p>
+    <img src="/{{ qr_code_path }}" alt="QR Code">
+    <a href="/" class="btn btn-primary">Back to Cars</a>
+{% endblock %}

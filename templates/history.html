@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Maintenance History
+{% endblock %}
+
+{% block main %}
+    <h2>Maintenance History for Car ID: {{ car_id }}</h2>
+
+    <form action="/add_history/{{ car_id }}" method="post">
+        <div class="mb-3">
+            <label for="description" class="form-label">Maintenance Description:</label>
+            <textarea id="description" name="description" class="form-control" placeholder="Enter maintenance details..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Maintenance</button>
+    </form>
+
+    <h3>Previous Maintenance Records</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in history %}
+            <tr>
+                <td>{{ record.date }}</td>
+                <td>{{ record.description }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="2">No maintenance records yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
